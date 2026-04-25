@@ -31,7 +31,7 @@ else:
     espaco ='Seu nome não contem espaços'
     
 #Fim da verifiação
-    print('\033[H\033[J', end='')
+    print('\033[H\033[J', end='') #print("\033c", end="")
 
 try:
     if nome != None and idade != None:
