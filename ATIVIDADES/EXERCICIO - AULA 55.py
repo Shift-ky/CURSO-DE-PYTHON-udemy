@@ -4,3 +4,16 @@ informe se este número é par ou ímpar. Caso o usuário não digite um número
 inteiro, informe que não é um número inteiro.
 """
 
+
+numero = input('Digite um número para saber se é par ou ímpar: ')
+
+print("\033c", end="")
+try:
+    numero = int(numero)
+    
+    if numero % 2 == 0:
+        print(f'o Número {numero} é par')
+    else:
+        print(f'O número {numero} é ímpar')
+except:
+    print('O valor digitado não é um número')
