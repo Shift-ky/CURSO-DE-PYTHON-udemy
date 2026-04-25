@@ -31,24 +31,23 @@ else:
     espaco ='Seu nome não contem espaços'
     
 #Fim da verifiação
-    
+    print('\033[H\033[J', end='')
 
-#try:
-if nome != None and idade != None:
-       print(f'Nome digitado: {nome}')
-       print(f'Nome incertido: {nome[::-1]}')
-       print(f'{espaco}')
-       print(f'Seu nome tem {len(nome)- nome.count(' ')} letras')
-       print(f'A primeira letra do seu nome é: {nome[0]}')
-       print(f'A útima letra do seu nome é: {nome[-1]}')
-       
-else:
-    if nome == None and idade == None:
-        print('Você deixou os campos vazios')
-    elif nome == None:
-        print('Campo Nome ficou vazio')
+try:
+    if nome != None and idade != None:
+        print(f'Nome digitado: {nome}')
+        print(f'Nome invertido: {nome[::-1]}')
+        print(f'{espaco}')
+        print(f'Seu nome tem {len(nome)- nome.count(' ')} letras')
+        print(f'A primeira letra do seu nome é: {nome[0]}')
+        print(f'A útima letra do seu nome é: {nome[-1]}')       
     else:
-        print('Campo Idade ficou vazia')
-#except:
- #   print('A idade tem que ser um número inteiro.')
+        if nome == None and idade == None:
+            print('Você deixou os campos vazios')
+        elif nome == None:
+            print('Campo Nome ficou vazio')
+        else:
+            print('Campo Idade ficou vazia')
+except:
+    print('A idade tem que ser um número inteiro.')
 
