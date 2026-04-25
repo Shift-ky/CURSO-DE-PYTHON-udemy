@@ -8,7 +8,7 @@ hora = input('Digite uma hora fechada: ')
 
 try:
     hora = int(hora)
-    hora_valida = hora >=  0 and hora <= 24
+    hora_valida = hora >=  0 and hora <= 23
     bom_dia     = hora >=  0 and hora <= 11 
     boa_tarde   = hora >= 12 and hora <= 17    
     if hora_valida:
