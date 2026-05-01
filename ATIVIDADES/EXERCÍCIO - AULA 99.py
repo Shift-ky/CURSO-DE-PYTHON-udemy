@@ -22,32 +22,38 @@ contrário disso:
     resultado é o valor da conta
 
 O primeiro dígito do CPF é 7
+
+ Author Robson Paiva
 """
 
        
 cpf = input('Digite o seu CPF: ').strip().replace('.','').replace('-','')
-
-
-cpf_validacao = cpf[0:8] 
-multiplicador  = int(10)
-multiplicacao_numeros = 0
-multiplicacao_numeros_por_10 = 0
-resto_divissão = 0
-validador_digito_1 = 0
-
-for i in cpf_validacao:
+cpf = cpf if len(cpf) == 11 else None
+try:
     
-    multiplicacao_numeros += (int(i)*multiplicador)
-    multiplicador -= 1
-    
-multiplicacao_numeros_por_10 = multiplicacao_numeros * 10
-resto_divissão = multiplicacao_numeros_por_10 % 11
-validador_digito_1 = resto_divissão if resto_divissão < 9 else 0 
-print(multiplicacao_numeros)
-print (multiplicacao_numeros_por_10)
-print(validador_digito_1)
+    cpf_validacao = cpf[0:8] 
+    multiplicador  = int(10)
+    multiplicacao_numeros = 0
+    multiplicacao_numeros_por_10 = 0
+    resto_divissão = 0
+    validador_digito_1 = 0
 
-if cpf[9] == str(validador_digito_1):
-    print('CPF VÁLIDO')
-else:
-    print('CPF INVÁLIDO')
+    for i in cpf_validacao:
+    
+        multiplicacao_numeros += (int(i)*multiplicador)
+        multiplicador -= 1
+    
+    multiplicacao_numeros_por_10 = multiplicacao_numeros * 10
+    resto_divissão = multiplicacao_numeros_por_10 % 11
+    validador_digito_1 = resto_divissão if resto_divissão < 9 else 0 
+
+    if cpf[9] == str(validador_digito_1):
+        print('CPF VÁLIDO') 
+    else:
+        print('CPF INVÁLIDO')
+except IndexError:
+    print('CPF Invormado está faltando informações, informar um CPF válido')
+except TypeError:
+    print('CPF com quantidade incorreta de caracteres')
+except ValueError:
+    print('CPF com letras informado, por gentileza inform os 11 dígitos do seu CPF')
