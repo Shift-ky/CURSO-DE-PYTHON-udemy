@@ -31,12 +31,19 @@ O segundo dígito do CPF é 0
 cpf = '74682489070'#input('Digite o seu CPF: ').strip().replace('.','').replace('-','')
 cpf = cpf if len(cpf) == 11 else None
 multiplicador_dez_digitos = 11
-dez_digito_multiplicado = 1
+dez_digito_multiplicado = 0
+dez_digito_mutiplicado_dez = 0 
 
 cpf_dez_digitos = cpf[:9] + '7'
 
 for j in cpf_dez_digitos:
     dez_digito_multiplicado += int(j) * multiplicador_dez_digitos
     multiplicador_dez_digitos -= 1
-print(cpf_dez_digitos)
-print(dez_digito_multiplicado)
+    
+dez_digito_mutiplicado_dez = dez_digito_multiplicado * 10
+
+resto_divisao_dez_digito = dez_digito_mutiplicado_dez % 11
+
+digito_validador_2 = resto_divisao_dez_digito if resto_divisao_dez_digito < 9 else 0
+
+
