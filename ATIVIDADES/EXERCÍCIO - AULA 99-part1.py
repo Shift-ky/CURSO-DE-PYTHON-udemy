@@ -28,32 +28,39 @@ O primeiro dígito do CPF é 7
 
        
 cpf = input('Digite o seu CPF: ').strip().replace('.','').replace('-','')
-cpf = cpf if len(cpf) == 11 else None
+
+if len(cpf) != 11:
+    cpf = None
+
 try:
     
-    cpf_validacao = cpf[0:8] 
-    multiplicador  = int(10)
-    multiplicacao_numeros = 0
-    multiplicacao_numeros_por_10 = 0
-    resto_divissão = 0
-    validador_digito_1 = 0
-
-    for i in cpf_validacao:
+    #Variáveis do primeiro dígito
+    cpf_nove_digitos = cpf[0:9] 
+    multiplicador_nove_digitos = int(10)
+    multiplicador_nove_digitos = 0
+    nove_digitos_multiplicado_por_dez = 0
+    resto_divissão_nove_digitos = 0
+    digito_validador_1 = 0
     
-        multiplicacao_numeros += (int(i)*multiplicador)
-        multiplicador -= 1
+    #Laço de repetição para fazer o calculo do primeiro dígito
+    for i in cpf_nove_digitos:
     
-    multiplicacao_numeros_por_10 = multiplicacao_numeros * 10
-    resto_divissão = multiplicacao_numeros_por_10 % 11
-    validador_digito_1 = resto_divissão if resto_divissão < 9 else 0 
+        multiplicador_nove_digitos += (int(i)*multiplicador_nove_digitos)
+        multiplicador_nove_digitos -= 1
+    
+    #Calculos e validações do primeiro dígito
+    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos * 10
+    resto_divissão_nove_digitos = nove_digitos_multiplicado_por_dez % 11
+    digito_validador_1 = resto_divissão_nove_digitos if resto_divissão_nove_digitos < 9 else 0 
 
-    if cpf[9] == str(validador_digito_1):
+
+    if cpf[9] == str(digito_validador_1):
         print('CPF VÁLIDO') 
     else:
         print('CPF INVÁLIDO')
 except IndexError:
     print('CPF Invormado está faltando informações, informar um CPF válido')
-except TypeError:
-    print('CPF com quantidade incorreta de caracteres')
+#except TypeError:
+ #   print('CPF com quantidade incorreta de caracteres')
 except ValueError:
     print('CPF com letras informado, por gentileza inform os 11 dígitos do seu CPF')
