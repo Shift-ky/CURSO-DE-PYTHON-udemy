@@ -49,7 +49,7 @@ try:
         multiplicador_nove_digitos -= 1
     
     #Calculos e validações do primeiro dígito
-    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos * 10
+    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos_soma * 10
     resto_divissão_nove_digitos = nove_digitos_multiplicado_por_dez % 11
     digito_validador_1 = resto_divissão_nove_digitos if resto_divissão_nove_digitos < 9 else 0 
 
