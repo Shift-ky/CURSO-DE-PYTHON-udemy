@@ -26,28 +26,57 @@ O primeiro dígito do CPF é 7
  Author Robson Paiva
 """
 
+import random
        
-cpf = '746824890'
-    
+def digito_1(cpf):
     #Variáveis do primeiro dígito
-cpf_nove_digitos = cpf[0:9] 
-multiplicador_nove_digitos = 10
-multiplicador_nove_digitos_soma = 0
-nove_digitos_multiplicado_por_dez = 0
-resto_divissão_nove_digitos = 0
-digito_validador_1 = 0
+    cpf_nove_digitos = cpf 
+    multiplicador_nove_digitos = 10
+    multiplicador_nove_digitos_soma = 0
+    nove_digitos_multiplicado_por_dez = 0
+    resto_divissão_nove_digitos = 0
+    digito_validador_1 = 0
     
     #Laço de repetição para fazer o calculo do primeiro dígito
-for i in cpf_nove_digitos:
+    for i in cpf_nove_digitos:
     
-    multiplicador_nove_digitos_soma += (int(i)*multiplicador_nove_digitos)
-    multiplicador_nove_digitos -= 1
+        multiplicador_nove_digitos_soma += (int(i)*multiplicador_nove_digitos)
+        multiplicador_nove_digitos -= 1
     
     #Calculos e validações do primeiro dígito
-nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos_soma * 10
-resto_divissão_nove_digitos = nove_digitos_multiplicado_por_dez % 11
-digito_validador_1 = resto_divissão_nove_digitos if resto_divissão_nove_digitos < 9 else 0 
+    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos_soma * 10
+    resto_divissão_nove_digitos = nove_digitos_multiplicado_por_dez % 11
+    digito_validador_1 = resto_divissão_nove_digitos if resto_divissão_nove_digitos < 9 else 0 
 
-print(multiplicador_nove_digitos_soma)
-print(nove_digitos_multiplicado_por_dez)
-print(digito_validador_1)
+    return str(digito_validador_1)
+
+def digito_2(cpf,digito_validador1):
+    multiplicador_dez_digitos = 11 
+    dez_digito_multiplicado = 0
+    dez_digito_mutiplicado_dez = 0 
+
+    cpf_dez_digitos = cpf + str(digito_validador1)
+
+    for j in cpf_dez_digitos:
+        dez_digito_multiplicado += int(j) * multiplicador_dez_digitos
+        multiplicador_dez_digitos -= 1
+    
+    dez_digito_mutiplicado_dez = dez_digito_multiplicado * 10
+
+    resto_divisao_dez_digito = dez_digito_mutiplicado_dez % 11
+    digito_validador_2 = resto_divisao_dez_digito if resto_divisao_dez_digito < 9 else 0
+    return str(digito_validador_2)
+    ...
+
+def gerador():
+    cpf = ''
+    for _ in range(9):
+        cpf += str(random.randint(0,9))
+    return str(cpf)
+print("\033c", end="")
+cpf = gerador()
+
+digito_validador1 = digito_1(cpf)
+digito_validador2 = digito_2(cpf,digito_validador1)
+cpf_gerado = cpf + digito_validador1 + digito_validador2
+print(f'{cpf_gerado[0:3]}.{cpf_gerado[3:6]}.{cpf_gerado[6:9]}-{cpf_gerado[9:]}')
