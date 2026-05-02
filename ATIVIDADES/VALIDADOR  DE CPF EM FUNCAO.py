@@ -27,46 +27,45 @@ O primeiro dígito do CPF é 7
  Author Robson Paiva
 """
 def digito_1(cpf):
-    
+    #Variáveis do primeiro dígito
     cpf_nove_digitos = cpf 
-    multiplicador_nove_digitos = int(10)
+    multiplicador_nove_digitos = 10
     multiplicador_nove_digitos_soma = 0
     nove_digitos_multiplicado_por_dez = 0
     resto_divissão_nove_digitos = 0
     digito_validador_1 = 0
     
-#Laço de repetição para fazer o calculo do primeiro dígito
+    #Laço de repetição para fazer o calculo do primeiro dígito
     for i in cpf_nove_digitos:
     
         multiplicador_nove_digitos_soma += (int(i)*multiplicador_nove_digitos)
         multiplicador_nove_digitos -= 1
     
-#Calculos e validações do primeiro dígito
-    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos * 10
+    #Calculos e validações do primeiro dígito
+    nove_digitos_multiplicado_por_dez = multiplicador_nove_digitos_soma * 10
     resto_divissão_nove_digitos = nove_digitos_multiplicado_por_dez % 11
     digito_validador_1 = resto_divissão_nove_digitos if resto_divissão_nove_digitos < 9 else 0 
 
-    return digito_validador_1
+    return str(digito_validador_1)
 
-def digito_2(cpf):
-    
-    multiplicador_dez_digitos = 11
+def digito_2(cpf,digito_validador1):
+    multiplicador_dez_digitos = 11 
     dez_digito_multiplicado = 0
     dez_digito_mutiplicado_dez = 0 
 
-    cpf_dez_digitos = cpf[:9] + str(digito_validador_1)
+    cpf_dez_digitos = cpf + str(digito_validador1)
 
     for j in cpf_dez_digitos:
         dez_digito_multiplicado += int(j) * multiplicador_dez_digitos
         multiplicador_dez_digitos -= 1
     
-        dez_digito_mutiplicado_dez = dez_digito_multiplicado * 10
+    dez_digito_mutiplicado_dez = dez_digito_multiplicado * 10
 
-        resto_divisao_dez_digito = dez_digito_mutiplicado_dez % 11
-        digito_validador_2 = resto_divisao_dez_digito if resto_divisao_dez_digito < 9 else 0
-        
-        return digito_2
-    ...
+    resto_divisao_dez_digito = dez_digito_mutiplicado_dez % 11
+    digito_validador_2 = resto_divisao_dez_digito if resto_divisao_dez_digito < 9 else 0
+    return str(digito_validador_2)
+
+    
 import sys
 import re
        
@@ -85,7 +84,7 @@ if entrada_e_sequincial:
     
 
 digito_validador_1 = digito_1(cpf)
-digito_validador_2 = digito_2(cpf)
+digito_validador_2 = digito_2(cpf,digito_validador_1)
     
 
 if cpf[9] == str(digito_validador_1) and cpf[10] == str(digito_validador_2):
