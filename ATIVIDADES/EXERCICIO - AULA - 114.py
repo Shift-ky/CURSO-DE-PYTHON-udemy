@@ -29,7 +29,7 @@ while True:
     
     
     
-    saida = input('Quer adicionar outro número: [S]im / [N]ão: ').lower().startswith('n')
+    saida = input('Quer adicionar outro número [S]im / [N]ão: ').lower().startswith('n')
     
     
     if saida is True:
