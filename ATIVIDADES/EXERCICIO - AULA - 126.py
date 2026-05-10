@@ -15,9 +15,15 @@ perguntas = [
         'Opções': ['4', '5', '2', '1'],
         'Resposta': '5',
     },
+    {
+        'Pergunta': 'Quanto é 50/2? ',
+        'Opções': ['24', '25', '22', '11'],
+        'Resposta': '25',
+    },
 ]
 contador = 0
 contador_acertos = 0
+resposta_validador = False
 while True:
     count = 0
     print(perguntas[contador]['Pergunta'])
@@ -29,15 +35,22 @@ while True:
         count += 1
     print()
     resposta = input('Escolha a opção: ')
+    
+    try:
+    
+        resposta_validador = resposta.isdecimal()
+        if resposta_validador is False:
+            print('Errou ❌')
+ 
+        validar = perguntas[contador]['Opções'][int(resposta)] == perguntas[contador]['Resposta']
 
-    validar = perguntas[contador]['Opções'][int(resposta)] == perguntas[contador]['Resposta']
-
-    if validar:
-        print('Acertou\n')
-        contador_acertos += 1
-    else:
-        print('Errou\n')
-        
+        if validar:
+            print('Acertou 👍\n')
+            contador_acertos += 1
+        else:
+            print('Errou ❌\n')
+    except:
+       ...        
     contador += 1
     if contador == len(perguntas):
         break
